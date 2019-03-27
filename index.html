@@ -1,0 +1,162 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link rel="apple-touch-icon" sizes="144x144" href="/icon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/icon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/icon/favicon-16x16.png">
+    <link rel="manifest" href="/icon/site.webmanifest">
+    <link rel="mask-icon" href="/icon/safari-pinned-tab.svg" color="#5bbad5">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="theme-color" content="#ffffff">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <style>
+        .bg-light {background-color: #f8f9fa!important;}
+        #target_pic { display: none; }
+        #source_pic { display: none; }
+        .newbtn { cursor: pointer; }
+        .hidden_content { display: none;  }
+        .card { padding: .75rem 1.25rem; background-color: #fff; border: 1px solid rgba(0,0,0,.125); }
+    </style>
+    <title>Compare faces with Amazon Rekognition!</title>
+
+  </head>
+  <body class="bg-light">
+
+    <div class="container">
+
+      <div class="py-5 text-center">
+        <img class="d-block mx-auto mb-4" src="images/Amazon-Rekognition.png" alt="" width="72" height="72">
+        <h2>Compare faces with Amazon Rekognition!</h2>
+        <p class="lead">This demo is intended to demonstrate the capabilities of Amazon Rekognition to detect and compare faces.<br>Also recognizes text in the target image.</p>
+      </div>
+    </div>
+
+    <div class="container">
+      <div align="center">
+        <h4>
+          <span class="text-muted">Select your images</span>
+        </h4>
+      </div><br>
+      <div class="row justify-content-md-center">
+        <div class="col col-lg-4">
+
+          <div class="card">
+            <div class="clearfix">
+              <div class="float-left">
+                <h6 class="my-0">Source</h6>
+                <small class="text-muted">Reference face (selfie)</small>
+              </div>
+              <div class="float-right" align="center">
+                <img src="images/loading.svg" width="40" id="source_loading" class="hidden_content">
+              </div>
+            </div>
+            <form id="fileForm1" class="form-horizontal" enctype="multipart/form-data">
+              <div class="row" align="center">
+                <label class="newbtn1" style="width: 100%; padding-top: 10px;">
+                  <img id="source_image_holder" src="images/selfie.png" class="img-fluid" >
+                  <input id="source_pic" type="file" accept=".jpg, .jpeg" >
+                </label>
+              </div>
+            </form>
+          </div>
+        </div>
+
+        <div class="col col-lg-4">
+          <div class="card">
+            <div class="clearfix">
+              <div class="float-left">
+                <h6 class="my-0">Target</h6>
+                <small class="text-muted">Comparison faces (ID, people, etc.)</small>
+              </div>
+              <div class="float-right" align="center">
+                <img src="images/loading.svg" width="40" id="target_loading" class="hidden_content">
+              </div>
+            </div>
+            <form id="fileForm2" class="form-horizontal" enctype="multipart/form-data">
+              <div class="row" align="center">
+                <label class="newbtn2" style="width: 100%; padding-top: 10px;">
+                  <img id="target_image_holder" src="images/id.png" class="img-fluid" >
+                  <input id="target_pic" type="file" accept=".jpg, .jpeg" >
+                </label>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+
+      <div class="row justify-content-md-center">
+        <div class="col col-lg-8">
+          <br><br>
+          <hr class="mb-4">
+          <br>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="container hidden_content" id="result_box">
+      <div align="center">
+        <h4>
+          <span class="text-muted">Result</span>
+        </h4>
+      </div><br>
+      <div class="row justify-content-md-center">
+        <div class="col col-lg-8 card">
+          <img src="images/loading.svg" id="result_loading">
+          <div id="text_result" align="center"></div>
+          <br>
+          <div id="image_result" align="center"></div>
+        </div>
+      </div>
+
+      <div class="row justify-content-md-center">
+        <div class="col col-lg-8">
+          <br><br>
+          <hr class="mb-4">
+          <br>
+        </div>
+      </div>
+
+    </div>
+
+    <center>
+    <a href="#" id="bt_ref"><img src="images/ref.png" style="opacity: 0.5; filter: alpha(opacity=50);" class="img-fluid" alt="AWS Reference Architecture"></a>
+    </center>
+    
+    <div class="container hidden_content" id="ref_box">
+      <div align="center">
+        <h4>
+          <span class="text-muted">AWS Reference Architecture</span>
+        </h4>
+      </div><br>
+      <div class="row justify-content-md-center">
+        <div class="col col-lg-8 card">
+          <img src="images/compare-faces.png" class="img-fluid" alt="Compare Faces - AWS Reference Architecture">
+        </div>
+      </div>
+    </div>
+
+    <footer class="my-5 pt-5 text-muted text-center text-small">
+      <p class="mb-1">&copy; 2019 Kabits.com</p>
+      <ul class="list-inline">
+      </ul>
+    </footer>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script src="https://sdk.amazonaws.com/js/aws-sdk-2.259.1.min.js"></script>
+    <script src="js/config.js?v=31"></script>
+    <script src="js/app.js?v=31"></script>
+
+  </body>
+</html>
