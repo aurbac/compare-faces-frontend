@@ -1,3 +1,7 @@
+/**
+ * @author Uriel Ramirez <aurbac@gmail.com>
+ */
+
 var sourceUploadPreSignedUrl = "";
 var targetUploadPreSignedUrl = "";
 var sourceDownloadPreSignedUrl = "";
